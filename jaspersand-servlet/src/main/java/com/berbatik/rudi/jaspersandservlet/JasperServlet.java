@@ -46,7 +46,6 @@ public class JasperServlet extends HttpServlet {
 		try {
 			InputStream reportStream3 = getClass().getResourceAsStream("/sales_order.jrxml");
 			JasperReport report = JasperCompileManager.compileReport(reportStream3);
-			JasperPrint print = JasperFillManager.fillReport(report, new HashMap<String, Object>());
 			
 			InputStream reportStream2 = getClass().getResourceAsStream("/sales_order.jrxml");
 			final String reportStr = IOUtils.toString(reportStream2);
@@ -60,6 +59,8 @@ public class JasperServlet extends HttpServlet {
 			jdbc = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/berbatik_magento?" +
 				"user=root&password=bippo");
+			JasperPrint print = JasperFillManager.fillReport(report, new HashMap<String, Object>(), jdbc);
+			
 //		facesContext.responseComplete();
 			resp.setContentType("application/pdf");
 //		resp.setContentType("text/html");
