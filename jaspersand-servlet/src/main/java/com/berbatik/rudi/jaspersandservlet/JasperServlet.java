@@ -65,8 +65,8 @@ public class JasperServlet extends HttpServlet {
 			resp.setContentType("application/pdf");
 //		resp.setContentType("text/html");
 //		JasperRunManager.runReportToHtmlFile(sourceFileName, params, conn)
-			JasperRunManager.runReportToPdfStream(reportStream2,
-					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
+//			JasperRunManager.runReportToPdfStream(reportStream3,
+//					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
 //			JasperRunManager.runReportToPdfStream(reportStream,
 //					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
 			JasperExportManager.exportReportToPdfStream(print, resp.getOutputStream());
