@@ -21,6 +21,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -64,6 +65,8 @@ public class JasperServlet extends HttpServlet {
 			resp.setContentType("application/pdf");
 //		resp.setContentType("text/html");
 //		JasperRunManager.runReportToHtmlFile(sourceFileName, params, conn)
+//			JasperRunManager.runReportToPdfStream(reportStream3,
+//					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
 //			JasperRunManager.runReportToPdfStream(reportStream,
 //					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
 			JasperExportManager.exportReportToPdfStream(print, resp.getOutputStream());
