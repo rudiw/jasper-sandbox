@@ -38,12 +38,12 @@ public class JasperServlet extends HttpServlet {
 			throws ServletException, IOException {
 //		resp.getWriter().write("Hello world");
 		
-		InputStream reportStream2 = getClass().getResourceAsStream("/sales_order.jrxml");
-		final String reportStr = IOUtils.toString(reportStream2);
-		log.info("JRXML {}", reportStr);
+		InputStream reportStream2 = getClass().getResourceAsStream("/sales_order.jasper");
+//		final String reportStr = IOUtils.toString(reportStream2);
+//		log.info("JRXML {}", reportStr);
 		
 //		InputStream reportStream = getClass().getResourceAsStream("/sales_order.jrxml");
-		StringBufferInputStream reportStream = new StringBufferInputStream(reportStr);
+//		StringBufferInputStream reportStream = new StringBufferInputStream(reportStr);
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -54,7 +54,7 @@ public class JasperServlet extends HttpServlet {
 			resp.setContentType("application/pdf");
 //		resp.setContentType("text/html");
 //		JasperRunManager.runReportToHtmlFile(sourceFileName, params, conn)
-			JasperRunManager.runReportToPdfStream(reportStream,
+			JasperRunManager.runReportToPdfStream(reportStream2,
 					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
 			jdbc.close();
 			resp.setStatus(200);
