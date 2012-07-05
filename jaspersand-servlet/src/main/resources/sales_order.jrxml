@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank A4" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16b19b35-30fb-4a64-b6ea-b88b9da3744a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="berbatik"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM customer_entity;]]>
+	</queryString>
+	<field name="entity_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[Entity Id]]></fieldDescription>
+	</field>
+	<field name="entity_type_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Entity Type Id]]></fieldDescription>
+	</field>
+	<field name="attribute_set_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Attribute Set Id]]></fieldDescription>
+	</field>
+	<field name="website_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Website Id]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[Email]]></fieldDescription>
+	</field>
+	<field name="group_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Group Id]]></fieldDescription>
+	</field>
+	<field name="increment_id" class="java.lang.String">
+		<fieldDescription><![CDATA[Increment Id]]></fieldDescription>
+	</field>
+	<field name="store_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Store Id]]></fieldDescription>
+	</field>
+	<field name="created_at" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[Created At]]></fieldDescription>
+	</field>
+	<field name="updated_at" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[Updated At]]></fieldDescription>
+	</field>
+	<field name="is_active" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Is Active]]></fieldDescription>
+	</field>
+	<field name="disable_auto_group_change" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Disable automatic group change based on VAT ID]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e68714e0-4750-48dc-9732-7940c0651898" x="18" y="11" width="70" height="30"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
