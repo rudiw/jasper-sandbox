@@ -16,7 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -38,14 +42,19 @@ public class JasperServlet extends HttpServlet {
 			throws ServletException, IOException {
 //		resp.getWriter().write("Hello world");
 		
-		InputStream reportStream2 = getClass().getResourceAsStream("/sales_order.jrxml");
-		final String reportStr = IOUtils.toString(reportStream2);
-		log.info("JRXML {}", reportStr);
-		
-//		InputStream reportStream = getClass().getResourceAsStream("/sales_order.jrxml");
-		StringBufferInputStream reportStream = new StringBufferInputStream(reportStr);
-		
 		try {
+			InputStream reportStream3 = getClass().getResourceAsStream("/sales_order.jrxml");
+			JasperReport report = JasperCompileManager.compileReport(reportStream3);
+			JasperPrint print = JasperFillManager.fillReport(report, new HashMap<String, Object>());
+			
+			InputStream reportStream2 = getClass().getResourceAsStream("/sales_order.jrxml");
+			final String reportStr = IOUtils.toString(reportStream2);
+			log.info("JRXML {}", reportStr);
+//			JasperRunManager.
+			
+	//		InputStream reportStream = getClass().getResourceAsStream("/sales_order.jrxml");
+			StringBufferInputStream reportStream = new StringBufferInputStream(reportStr);
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			jdbc = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/berbatik_magento?" +
@@ -54,8 +63,15 @@ public class JasperServlet extends HttpServlet {
 			resp.setContentType("application/pdf");
 //		resp.setContentType("text/html");
 //		JasperRunManager.runReportToHtmlFile(sourceFileName, params, conn)
-			JasperRunManager.runReportToPdfStream(reportStream,
-					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
+//			JasperRunManager.runReportToPdfStream(reportStream,
+//					resp.getOutputStream(), new HashMap<String, Object>(), jdbc);
+			JasperExportManager.exportReportToPdfStream(print, resp.getOutputStream());
+			
+			// yang di bawah ini juga bisa, asalkan inputnya adalah object JasperReport
+			// bukan Stream (baik file .jasper maupun .jrxml gagal)
+//			byte[] output = JasperRunManager.runReportToPdf(report,
+//					new HashMap<String, Object>(), jdbc);
+//			resp.getOutputStream().write(output);
 			jdbc.close();
 			resp.setStatus(200);
 		} catch (Exception e) {
